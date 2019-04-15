@@ -1,8 +1,11 @@
 package com.trunghoang.generalapp
 
+import java.util.*
+import kotlin.collections.ArrayList
+
 fun main() {
     val map = ArrayList<Node>()
-    with (map) {
+    with(map) {
         add(Node(0, listOf(), 2))
         add(Node(1, listOf(6, 8), 1))
         add(Node(2, listOf(7, 9), 1))
@@ -17,7 +20,7 @@ fun main() {
         add(Node(11, listOf(4, 6), -1))
         add(Node(12, listOf(5, 7), -1))
     }
-    val players = ArrayList<Player>().apply {
+    val initPlayers = ArrayList<Player>().apply {
         add(Player(1, 1))
         add(Player(1, 2))
         add(Player(1, 3))
@@ -25,16 +28,40 @@ fun main() {
         add(Player(-1, 11))
         add(Player(-1, 12))
     }
-    NodeMap.genNewStates(players)
-    val nodeMap = NodeMap(map, players = players)
-    nodeMap.start()?.let {
-        val s = StringBuilder()
-        it.forEach {
-            s.append("${it.first} -> ${it.second}")
-            s.appendln()
+    val queue: Queue<NodeMap> = LinkedList<NodeMap>()
+    val states = ArrayList<State>()
+    queue.add(NodeMap(map, players = initPlayers))
+    states.add(queue.peek().getState())
+    while (queue.isNotEmpty()) {
+        val nodeMap = queue.remove()
+        with(nodeMap) {
+            if (checkWin()) {
+                printResult()
+                return
+            }
+            players.forEach {
+                getAvailableNodes(it).forEach { des ->
+                    val start = it.position
+                    if (!states.isStateExist(
+                            getState(stepPlayers(players, start, des))
+                        )
+                    ) {
+                        val newMap = stepMap(start, des)
+                        queue.add(newMap)
+                        states.add(newMap.getState())
+                    }
+                }
+            }
         }
-        println(s)
-    } ?: run {
-        println("No result")
     }
+
+    println("No Result")
+}
+
+fun ArrayList<State>.isStateExist(state: State) = this.find {
+    (it.humanState == state.humanState) && (it.wolvesState == state.wolvesState)
+}?.let {
+    true
+} ?: run {
+    false
 }
