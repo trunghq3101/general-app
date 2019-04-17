@@ -5,14 +5,23 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity" android:id="@+id/constraintMain">
+        tools:context=".SecondActivity">
+
     <Button
-            android:text="Start Second"
+            android:text="Start Main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/buttonDialog" android:layout_marginTop="8dp"
+            android:id="@+id/buttonStartMain" android:layout_marginTop="8dp"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="8dp" android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" android:layout_marginRight="8dp" android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"/>
+    <Button
+            android:text="Start Third"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonStartThird" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/buttonStartMain"
+            app:layout_constraintStart_toStartOf="@+id/buttonStartMain"
+            app:layout_constraintEnd_toEndOf="@+id/buttonStartMain"/>
 </android.support.constraint.ConstraintLayout>

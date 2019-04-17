@@ -5,23 +5,20 @@ import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_third.*
 
-class MainActivity : AppCompatActivity() {
-
+class ThirdActivity : AppCompatActivity() {
     companion object {
-        const val TAG = "MainActivity"
+        const val TAG = "ThirdActivity"
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        Log.d(TAG, "Create")
-        buttonDialog.setOnClickListener {
-            //openDialogA()
-            //startActivity(Intent(this, DialogActivity::class.java))
+        setContentView(R.layout.activity_third)
+        buttonStartMain.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+        }
+        buttonStartSecond.setOnClickListener {
             startActivity(Intent(this, SecondActivity::class.java))
         }
     }
@@ -68,9 +65,5 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         Log.d(TAG, "Destroy")
-    }
-
-    private fun openDialogA() {
-        ADialogFragment.newInstance().show(supportFragmentManager, "ADialogFragment")
     }
 }
