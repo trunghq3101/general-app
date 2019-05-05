@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">GeneralApp</string>
-    <string name="title_not_done_todos">Việc cần làm</string>
-    <string name="title_done_todos">Đã hoàn thành</string>
+    <string name="title_not_done_todos">Việc cần làm (%d)</string>
+    <string name="title_done_todos">Đã hoàn thành (%d)</string>
 </resources>
