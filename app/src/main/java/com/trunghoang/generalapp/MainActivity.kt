@@ -3,12 +3,11 @@ package com.trunghoang.generalapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     private val todoRecyclerAdapter: TodoRecyclerAdapter by lazy {
-        TodoRecyclerAdapter(ArrayList())
+        TodoRecyclerAdapter(ArrayList(), ArrayList(), resources)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,34 +15,26 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         recyclerView.adapter = todoRecyclerAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
-        todoRecyclerAdapter.setData(getTodos())
+        todoRecyclerAdapter.setNotDoneTodos(getNotDoneTodos())
+        todoRecyclerAdapter.setDoneTodos(getDoneTodos())
     }
 
-    fun getTodos(): List<Todo> {
+    fun getNotDoneTodos(): List<Todo> {
         return arrayListOf(
             Todo("Mua quần áo mới"),
             Todo("Mua tay cầm game mới"),
             Todo("Mua xe mới"),
             Todo("Mua nhà mới"),
-            Todo("Kiếm gấu mới"),
-            Todo("Mua giày 1"),
-            Todo("Mua giày 2"),
-            Todo("Mua giày 3"),
-            Todo("Mua giày 4"),
-            Todo("Mua giày 5"),
-            Todo("Mua giày 6"),
-            Todo("Mua giày 1"),
-            Todo("Mua giày 2"),
-            Todo("Mua giày 3"),
-            Todo("Mua giày 4"),
-            Todo("Mua giày 5"),
-            Todo("Mua giày 6"),
-            Todo("Mua giày 1"),
-            Todo("Mua giày 2"),
-            Todo("Mua giày 3"),
-            Todo("Mua giày 4"),
-            Todo("Mua giày 5"),
-            Todo("Mua giày 6")
+            Todo("Kiếm gấu mới")
+        )
+    }
+
+    fun getDoneTodos(): List<Todo> {
+        return arrayListOf(
+            Todo("Mua áo 1"),
+            Todo("Mua áo 2"),
+            Todo("Mua áo 3"),
+            Todo("Mua áo 4")
         )
     }
 }
