@@ -2,4 +2,7 @@
     <string name="app_name">GeneralApp</string>
     <string name="title_not_done_todos">Việc cần làm (%d)</string>
     <string name="title_done_todos">Đã hoàn thành (%d)</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
