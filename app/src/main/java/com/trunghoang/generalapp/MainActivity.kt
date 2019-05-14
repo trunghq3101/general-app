@@ -1,23 +1,20 @@
 package com.trunghoang.generalapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.trunghoang.generalapp.recyclerAnimation.RecyclerAnimationFragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainControlFragment.FragmentCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        /*openFragment(DoubleRecyclerFragment.newInstance())
-        openFragment(ListFragment.newInstance())
-        openFragment(RecyclerBasicFragment.newInstance())*/
-        openFragment(RecyclerAnimationFragment.newInstance())
+        openFragment(MainControlFragment.newInstance())
     }
 
-    private fun openFragment(fragment: Fragment) {
+    override fun openFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
-            .add(R.id.constraintMain, fragment)
+            .replace(R.id.constraintMain, fragment)
+            .addToBackStack(null)
             .commit()
     }
 }
